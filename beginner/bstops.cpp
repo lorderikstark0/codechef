@@ -1,104 +1,104 @@
 #include <bits/stdc++.h>
-
-#define pb push_back 
-#define ll long long 
-#define forit(it,a) for(_typeof(a.begin()) it =a.begin();it!=a.end();it++)
-#define mp make_apir 
-
 using namespace std;
 
-//output is not quite right -->
-//refer again to the sample solution 
-//in terms of what needs to be printed out 
-
-
-struct Node {
+struct Node{
 	int data;
-	struct Node* left ,*right;
+	struct Node* left;
+	struct Node* right;
 };
 
-struct Node* newNode(int data){
-	struct Node* node =(struct Node*)malloc(sizeof(struct Node));
-	node->data=data;
-	node->left=NULL;
-	node->right=NULL;
-	return node;
+struct Node *newNode(int data){
+	struct Node* temp =(struct Node*)malloc(sizeof(struct Node));
+	temp->data=data;
+	temp->right=NULL;
+	temp->left=NULL;
+	return temp;
 }
-struct Node* insertNode(struct Node* node ,int data){
-	if(node==NULL){
-		return newNode(data);
+
+void inorder(struct Node* root){
+	if(root!=NULL){
+		inorder(root->left);
+		cout << root- >data;
+		inorder(root->right);
 	}
-	if(data < node->data){
-		node->left =insertNode(node->left,data);
+}
+
+struct Node *insert(struct Node* node ,int data){
+	if(node==NULL){
+		return newNode(key);
 		
 	}
-	else{
-		node->right=insertNode(node->right,data);
+	if(key < node->data){
+		node->left=insert(node->left,data);
 	}
+	else 
+	node ->right =insert(node->right,data);
 	return node;
 }
 
+
 struct Node* minValueNode(struct Node* node){
-	struct Node* current = node;
-	
-	while(current && current->left !=NULL)
-	current =current->left;
-	
+	struct Node* current =node;
+	while(current && current->left !=NULL){
+		current =current->left;
+	}
 	return current;
 }
 
-struct Node* deleteNode(struct Node* node,int data){
-	if(node==NULL){
-		return node;
+struct Node* deleteNode(struct Node* root ,int data){
+	if(root==NULL){
+		return root;
 	}
-	if(data  < node->data){
-		node->left = deleteNode(node->left,data);
+	if(data < node->data){
+		root->left =deleteNode(root->left,data);
 	}
-	else if(data > node->data){
-		node->right= deleteNode(node->right,data);
+	else if(data > root->data){
+		root->right = deleteNode(root->right,data);
 	}
-	else{
-		if(node->left==NULL){
-			struct Node *temp =node->right;
-			free(node);
+	//if key is same as root's key 
+	else {
+		if(root->left==NULL){
+			struct Node* temp =root->right;
+			free(root);
 			return temp;
 		}
-		else if(node->right==NULL){
-			struct Node* temp =node->left;
-			free(node);
+		else if(root->right ==NULL){
+			struct Node* temp =root->left;
+			free(root);
 			return temp;
 		}
-	struct Node* temp =minValueNode(node->right);	
-	node->data=temp->data;
-	node->right =deleteNode(node->right,temp->data);
+		
+		//node with two children : get the inorder successor 
+		struct Node* temp =minValueNode(root->right);
+		
+		//copy the inorder successor;s content to this node 
+		root->data =temp->data;
+		
+		//delete the inorder successor 
+		root->right =deleteNode(root->right,temp->data);
 	}
-	return node;
 }
 
+
+
+
 int main(){
-	int t;
-	cin >> t;
-	multimap<char,int> a1;
-	while(t--){
-		char i ;int x ;
-		cin >> i >>x;
-		a1.insert(pair<char,int>(i,x));
-		
+	int q;
+	cin >> q;
+	multimap<char,int> tree_k;
+	
+	while(q--){
+		char i;int x;
+		cin >> i >> x;
+		tree_k.insert(piar<int,int> (i,x));
 	}
 	
-	struct Node * root =NULL;
-	multimap<char,int>::iterator itr;
 	
-	for(itr = a1.begin();itr!=a1.end();++itr){
-		if(itr->first=='i'){
-			root=  insertNode(root,itr->second);
-			cout << root->data<<"\n";
-		}
-		else{
-			 root= deleteNode(root,itr->second);
-			 cout << root->data<<"\n";
-		}
-	}
+	
+	
+	
+	
+	
 	
 	return 0;
 }
