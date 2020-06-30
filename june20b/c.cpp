@@ -1,55 +1,50 @@
 #include <bits/stdc++.h>
 using namespace std;
+//codde for this solution si chficrm
 
-#define pb push_back
-
-
-bool allServed(vector<int>& arr){
+vector<bool> balance(vector<int>& arr){
 	int balance=0;
-	bool poss=false;
+	vector<bool> result;
 	for(size_t i=0;i<arr.size();i++){
-		if(arr[i]==5){
-			balance+=5;
-			poss=true;
-		}
-		else if(arr[i]==10 && balance >5){
-			balance +=10;
-			balance =balance-5;
-			poss=true;
-		}
-		else if(arr[i]==15 && balance >10){
-			balance +=15;
-			balance=balance-10;
-			poss=true;
-		}
-		else{
-			poss=false;
-		}
+			if(arr[i]==5){
+				balance+=5;
+				result.push_back(true);
+			}
+			else if(arr[i]==10 && balance >=5){
+				balance = balance -5;
+				result.push_back(true);
+	         }
+	         else if(arr[i]==15 && balance >=10){
+	         	balance=balance-10;
+	         	result.push_back(true);
+	         }
+	         else {
+	         	result.push_back(false);
+	         }
 	}
-return poss;
-
+	return result;
 }
-
 
 int main(){
 	int t;
 	cin >> t;
-	while(t-->0){
-		int n;
+	while(t--){
+		int n ;
 		cin >> n;
 		vector<int> arr;
-		while(n-->0){
-			int p ;
-			cin >>p;
-			arr.pb(p);
-			
+		while(n--){
+			int p;
+			cin >> p;
+			arr.push_back(p);			
 		}
-		if(allServed(arr)){
-				cout <<"YES"<<"\n";
-			}
-			else{
-				cout <<"NO"<<"\n";
-			}
+		vector<bool> ans =balance(arr);
+		if(find(ans.begin(),ans.end(),false) !=ans.end())
+		{
+			cout << "NO"<<"\n";
+		}
+		else{
+			cout <<"YES"<<"\n";
+		}
 	}
 	return 0;
 }

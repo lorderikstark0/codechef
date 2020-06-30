@@ -1,5 +1,5 @@
-#include <bits/stdc++.h>
-
+9#include <bits/stdc++.h>
+//cache hits
 #define pb push_back 
 #define ll long long 
 #define forit(it,a) for(_typeof(a.begin()) it =a.begin();it!=a.end();it++)
@@ -7,24 +7,23 @@
 
 using namespace std;
 
-int priority(string exp){
-	
-}
-
-
-string result(string exp){
-	
-}
-
 
 int main(){
 	int t;
 	cin >> t;
 	while(t--){
-		string exp ;
-		cin >> exp ;
-		string result =rpn(exp);
-		cout << result <<"\n";
+		int n,b,m;
+		cin >> a>>b>>m;
+		vector<int>arr;
+		while(m--){
+			int x;
+			cin >> x;
+			arr.pb(x);
+		}
+		int count =0;
+		for(size_t i=0;i<arr.size();i++){
+			if(arr[i]==)
+		}
 	}
 	return 0;
 }

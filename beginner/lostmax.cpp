@@ -7,24 +7,14 @@
 
 using namespace std;
 
-int priority(string exp){
-	
-}
-
-
-string result(string exp){
-	
-}
-
-
+//not done 
 int main(){
 	int t;
 	cin >> t;
 	while(t--){
-		string exp ;
-		cin >> exp ;
-		string result =rpn(exp);
-		cout << result <<"\n";
+		int n ;
+		cin >> n;
+		
 	}
 	return 0;
 }
